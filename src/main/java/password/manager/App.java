@@ -1,7 +1,9 @@
 package password.manager;
 
+import java.io.IOException;
+
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         PasswordManager passwordManager = new PasswordManager();
 
@@ -16,5 +18,8 @@ public class App {
         passwordManager.addPassword("25689561", "dd8.com");
 
         passwordManager.getPasswordEntries().forEach(System.out::println);
+
+        passwordManager.savePasswords();
     }
+
 }

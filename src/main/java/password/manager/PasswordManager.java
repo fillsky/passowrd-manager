@@ -1,7 +1,9 @@
 package password.manager;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+
 
 public class PasswordManager {
 
@@ -32,5 +34,9 @@ public class PasswordManager {
 
     public HashSet<PasswordEntry> getPasswordEntries() {
         return passwordEntries;
+    }
+
+    public void savePasswords() throws IOException {
+        FileManager.dumpPasswordEntryToFile(passwordEntries);
     }
 }

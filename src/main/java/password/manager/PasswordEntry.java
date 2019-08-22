@@ -1,9 +1,13 @@
 package password.manager;
 
+import lombok.ToString;
+
+import java.util.Objects;
+@ToString
 public class PasswordEntry {
 
     private String password;
-    private String serviceName;
+    private final String serviceName;
     private String login;
     private String description;
 
@@ -26,9 +30,7 @@ public class PasswordEntry {
         this.password = password;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
+
 
     public void setLogin(String login) {
         this.login = login;
@@ -52,5 +54,18 @@ public class PasswordEntry {
 
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PasswordEntry)) return false;
+        PasswordEntry that = (PasswordEntry) o;
+        return Objects.equals(serviceName, that.serviceName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(serviceName);
     }
 }

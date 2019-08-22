@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PasswordManager {
 
-    private static HashSet<PasswordEntry> passwordEntries;
+    private HashSet<PasswordEntry> passwordEntries;
 
     public PasswordManager() {
         passwordEntries = new HashSet<>();
@@ -20,7 +20,17 @@ public class PasswordManager {
     }
 
     public boolean changePassword(PasswordEntry passwordEntry, String password) {
-        passwordEntry.setPassword(password);
-        return true;
+
+        boolean isDuplicate = passwordEntries.stream()
+                .anyMatch(pe -> pe.getPassword().equals(password));
+        if (!isDuplicate) {
+            passwordEntry.setPassword(password);
+        }
+
+        return isDuplicate;
+    }
+
+    public HashSet<PasswordEntry> getPasswordEntries() {
+        return passwordEntries;
     }
 }

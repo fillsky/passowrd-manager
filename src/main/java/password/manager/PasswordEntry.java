@@ -68,4 +68,5 @@ public class PasswordEntry {
     public int hashCode() {
         return Objects.hash(serviceName);
     }
+
 }

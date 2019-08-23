@@ -1,8 +1,13 @@
 package password.manager;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class App {
+
+    static String mainPassword = "1234qwer";
+    static int numberOfTrials = 4;
+
     public static void main(String[] args) throws IOException {
 
         PasswordManager passwordManager = new PasswordManager();
@@ -20,6 +25,50 @@ public class App {
         passwordManager.getPasswordEntries().forEach(System.out::println);
 
         passwordManager.savePasswords();
-    }
 
-}
+
+//         Added lines in 23.08.2019
+
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0; i < numberOfTrials; i++) {
+            System.out.println("MENU 1 : Provide password to open the file");
+            String fromKeyboard = sc.nextLine();
+            if (fromKeyboard.equals(mainPassword)) {
+                openMenu2();
+            }
+        }
+        System.out.println("Application closed");
+
+
+        public void openMenu2 () {
+
+            Scanner sc = new Scanner(System.in);
+
+            System.out.println("MENU 2 : Choose option you want to do:  ");
+            System.out.println("\t\t1. - Display password for specified entry");
+            System.out.println("\t\t2. - Add new entry and set password.");
+            System.out.println("\t\t2. - Remove entry");
+            System.out.println("\t\t4. - Change password for existing entry");
+            System.out.println("\t\t5. - Safe and close");
+
+            String fromKeyboard = sc.nextLine();
+
+
+            switch (fromKeyboard) {
+                case 0: {
+                    passwordManager.displayPassword();
+                }
+                case 1: {
+                    passwordManager.addPassword();
+                }
+
+            }
+
+
+//    wyswietl, dodaj, skopiuj, aktualizuj,
+//    zablokuj save,
+//    plik ani przez chwilę nie powinien miec odszyfrowanego pliku
+
+
+        }
+    }

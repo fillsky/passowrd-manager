@@ -39,4 +39,12 @@ public class PasswordManager {
     public void savePasswords() throws IOException {
         FileManager.dumpPasswordEntryToFile(passwordEntries);
     }
+
+    //         Added lines in 23.08.2019
+
+    public void displayPassword(PasswordEntry passwordEntry) {
+        passwordEntry.getPassword();
+        System.out.println("Your password for: " + passwordEntry + " is: ");
+        System.out.println(password);
+    }
 }

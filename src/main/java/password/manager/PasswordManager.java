@@ -8,6 +8,8 @@ import java.util.Set;
 
 public class PasswordManager {
 
+    private int passwordLenght = 8;
+
     private HashSet<PasswordEntry> passwordEntries;
 
     public PasswordManager() {
@@ -52,11 +54,11 @@ public class PasswordManager {
     public void savePasswords() throws IOException {
         FileManager.dumpPasswordEntryToFile(passwordEntries);
     }
+
     public void readPasswordEntries() throws IOException {
 
         passwordEntries = FileManager.readPasswordEntryFromFile();
     }
-
 
 
     //         Added lines in 23.08.2019
@@ -75,4 +77,15 @@ public class PasswordManager {
         System.out.println("No such service found.");
         return false;
     }
+
+    public String generatePassword() {
+        String password = "";
+        StringBuilder sB = new StringBuilder(password);
+        for (int i = 0; i < passwordLenght; i++) {
+//            sB.append(math.)
+        }
+        password = sB.toString();
+        return password;
+    }
 }
+

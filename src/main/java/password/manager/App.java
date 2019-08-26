@@ -52,64 +52,76 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("MENU 2 : Choose option you want to do:  ");
-        System.out.println("\t\t1. - Display password for specified entry");
-        System.out.println("\t\t2. - Add new entry and set password.");
-        System.out.println("\t\t3. - Remove entry");
-        System.out.println("\t\t4. - Change password for existing entry");
-        System.out.println("\t\t5. - Save and close");
+        while (true) {
 
-        int fromKeyboard = Integer.parseInt(sc.nextLine());
+            System.out.println("MENU 2 : Choose option you want to do:  ");
+            System.out.println("\t\t1. - Display password for specified entry");
+            System.out.println("\t\t2. - Add new entry and set password.");
+            System.out.println("\t\t3. - Remove entry");
+            System.out.println("\t\t4. - Change password for existing entry");
+            System.out.println("\t\t5. - Save and close");
+
+            int fromKeyboard;
+             try {
+                 fromKeyboard = Integer.parseInt(sc.nextLine());
+             } catch (NumberFormatException e){
+                 System.out.println("Wrong input");
+                 fromKeyboard = 0;
+             }
 
 
-        switch (fromKeyboard) {
-            case 1: {
-                System.out.println("Put service name: ");
-                String serviceName = sc.nextLine();
-                System.out.println(serviceName);
-                passwordManager.displayPassword(serviceName);
-                break;
-            }
-            case 2: {
-                System.out.println("Put service name you want to add: ");
-                String serviceName = sc.nextLine();
-                System.out.println("Put password for :" + serviceName);
-                String password = sc.nextLine();
-                passwordManager.addPassword(password, serviceName);
-                break;
-            }
+            switch (fromKeyboard) {
+                case 1: {
+                    System.out.println("Put service name: ");
+                    String serviceName = sc.nextLine();
+                    System.out.println(serviceName);
+                    passwordManager.displayPassword(serviceName);
+                    break;
+                }
+                case 2: {
+                    System.out.println("Put service name you want to add: ");
+                    String serviceName = sc.nextLine();
+                    System.out.println("Put password for : " + serviceName);
+                    String password = sc.nextLine();
+                    passwordManager.addPassword(password, serviceName);
+                    break;
+                }
 
 //                Added lines in 26.08.2019
-            case 3: {
-                System.out.println("Put service name you want to remove: ");
-                String serviceName = sc.nextLine();
-                passwordManager.removePassword(serviceName);
-                break;
-            }
-            case 4: {
-                System.out.println("Put service name you want to change: ");
-                String serviceName = sc.nextLine();
-                System.out.println("Put password for :" + serviceName);
-                String password = sc.nextLine();
-                passwordManager.changePassword(password, serviceName);
-                break;
-            }
-            case 5: {
-                try {
-                    passwordManager.savePasswords();
-                } catch (IOException e) {
-                    System.out.println("Error while saving file");
-                    e.printStackTrace();
+                case 3: {
+                    System.out.println("Put service name you want to remove: ");
+                    String serviceName = sc.nextLine();
+                   if( passwordManager.removePassword(serviceName)){
+                       System.out.println("Service " + serviceName + " removed");
+                   }
+                   else {
+                       System.out.println("Service not removed");
+                   }
+                    break;
                 }
-                System.exit(0);
-                break;
+                case 4: {
+                    System.out.println("Put service name you want to change: ");
+                    String serviceName = sc.nextLine();
+                    System.out.println("Put password for :" + serviceName);
+                    String password = sc.nextLine();
+                    passwordManager.changePassword(password, serviceName);
+                    break;
+                }
+                case 5: {
+                    try {
+                        passwordManager.savePasswords();
+                    } catch (IOException e) {
+                        System.out.println("Error while saving file");
+                        e.printStackTrace();
+                    }
+                    System.exit(0);
+                    break;
+                }
+                default: {
+                    System.out.println("Choose correct option.");
+                    break;
+                }
             }
-            default:{
-                System.out.println("Choose correct option.");
-                openMenu2();
-                break;
-            }
-
 
 //    wyswietl, dodaj, skopiuj, aktualizuj,
 //    zablokuj save,

@@ -28,7 +28,7 @@ public class FileManager {
 
         writer.writeAll(passwordEntries.stream()
                 .map(FileManager::passwordEntriesToArray)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toSet()));
 
         writer.close();
     }
@@ -49,7 +49,8 @@ public class FileManager {
                 .withQuoteChar('"')
                 .withSeparator(';');
 
-        CSVReaderBuilder readerBuilder = new CSVReaderBuilder(new FileReader("passwords.csv")).withCSVParser(parserBuilder.build());
+        CSVReaderBuilder readerBuilder = new CSVReaderBuilder(new DecipherFileReader("passwords.csv", "p"))
+                .withCSVParser(parserBuilder.build());
         CSVReader reader = readerBuilder.build();
         return reader.readAll().stream()
                 .map(FileManager::arrayToPasswordEntry)

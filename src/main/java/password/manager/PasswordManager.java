@@ -28,7 +28,6 @@ public class PasswordManager {
         if (!isDuplicate) {
             passwordEntry.setPassword(password);
         }
-
         return isDuplicate;
     }
 

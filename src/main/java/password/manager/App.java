@@ -30,11 +30,12 @@ public class App {
 //         Added lines in 23.08.2019
 
         Scanner sc = new Scanner(System.in);
+
         for (int i = 0; i < numberOfTrials; i++) {
             System.out.println("MENU 1 : Provide password to open the file");
             String fromKeyboard = sc.nextLine();
             if (fromKeyboard.equals(mainPassword)) {
-                openMenu2();
+                passwordManager.openMenu2();
             }
         }
         System.out.println("Application closed");
@@ -47,7 +48,7 @@ public class App {
             System.out.println("MENU 2 : Choose option you want to do:  ");
             System.out.println("\t\t1. - Display password for specified entry");
             System.out.println("\t\t2. - Add new entry and set password.");
-            System.out.println("\t\t2. - Remove entry");
+            System.out.println("\t\t3. - Remove entry");
             System.out.println("\t\t4. - Change password for existing entry");
             System.out.println("\t\t5. - Safe and close");
 
@@ -55,11 +56,22 @@ public class App {
 
 
             switch (fromKeyboard) {
-                case 0: {
+                case 1: {
                     passwordManager.displayPassword();
                 }
-                case 1: {
-                    passwordManager.addPassword();
+                case 2: {
+                    passwordManager.addPassword(String password);
+                }
+
+//                Added lines in 26.08.2019
+                case 3: {
+                    passwordManager.removePassword(PasswordEntry passwordEntry, String password);
+                }
+                case 4. {
+                    passwordManager.changePassword(PasswordEntry passwordEntry, String password);
+                }
+                case 5. {
+                    passwordManager.savePasswords();
                 }
 
             }
@@ -72,3 +84,4 @@ public class App {
 
         }
     }
+}

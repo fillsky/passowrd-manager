@@ -12,20 +12,21 @@ public class App {
     public static void main(String[] args) throws IOException {
 
 
-        passwordManager.addPassword("12345678", "dd1.com");
-        passwordManager.addPassword("45486545", "dd2.com");
-        passwordManager.addPassword("25565515", "dd3.com");
-        passwordManager.addPassword("25645445", "dd4.com");
-        passwordManager.addPassword("25545654", "dd5.com");
-        passwordManager.addPassword("96546324", "dd6.com");
-        passwordManager.addPassword("99556855", "dd4.com");
-        passwordManager.addPassword("25596565", "dd7.com");
-        passwordManager.addPassword("25689561", "dd8.com");
+//        passwordManager.addPassword("12345678", "dd1.com");
+//        passwordManager.addPassword("45486545", "dd2.com");
+//        passwordManager.addPassword("25565515", "dd3.com");
+//        passwordManager.addPassword("25645445", "dd4.com");
+//        passwordManager.addPassword("25545654", "dd5.com");
+//        passwordManager.addPassword("96546324", "dd6.com");
+//        passwordManager.addPassword("99556855", "dd4.com");
+//        passwordManager.addPassword("25596565", "dd7.com");
+//        passwordManager.addPassword("25689561", "dd8.com");
 
+
+        //passwordManager.savePasswords();
+
+        passwordManager.readPasswordEntries();
         passwordManager.getPasswordEntries().forEach(System.out::println);
-
-        passwordManager.savePasswords();
-
 
 //         Added lines in 23.08.2019
 
@@ -41,6 +42,7 @@ public class App {
         }*/
 
         openMenu2();
+        passwordManager.savePasswords();
         System.out.println("Application closed");
 
 
@@ -55,7 +57,7 @@ public class App {
         System.out.println("\t\t2. - Add new entry and set password.");
         System.out.println("\t\t3. - Remove entry");
         System.out.println("\t\t4. - Change password for existing entry");
-        System.out.println("\t\t5. - Safe and close");
+        System.out.println("\t\t5. - Save and close");
 
         int fromKeyboard = Integer.parseInt(sc.nextLine());
 
@@ -85,7 +87,7 @@ public class App {
                 break;
             }
             case 4: {
-                System.out.println("Put service name you want to add: ");
+                System.out.println("Put service name you want to change: ");
                 String serviceName = sc.nextLine();
                 System.out.println("Put password for :" + serviceName);
                 String password = sc.nextLine();

@@ -3,6 +3,7 @@ package password.manager;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class PasswordManager {
@@ -51,6 +52,12 @@ public class PasswordManager {
     public void savePasswords() throws IOException {
         FileManager.dumpPasswordEntryToFile(passwordEntries);
     }
+    public void readPasswordEntries() throws IOException {
+
+        passwordEntries = FileManager.readPasswordEntryFromFile();
+    }
+
+
 
     //         Added lines in 23.08.2019
 

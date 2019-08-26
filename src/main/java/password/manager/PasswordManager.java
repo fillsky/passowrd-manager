@@ -17,18 +17,31 @@ public class PasswordManager {
         return passwordEntries.add(new PasswordEntry(password, serviceName));
     }
 
-    public boolean removePassword(PasswordEntry passwordEntry) {
-        return passwordEntries.remove(passwordEntry);
+    public boolean removePassword(String serviceName) {
+        for (PasswordEntry passwordEntry : passwordEntries) {
+            if (passwordEntry.getServiceName().equalsIgnoreCase(serviceName)) {
+                return passwordEntries.remove(passwordEntry);
+            }
+        }
+        return false;
+
     }
 
-    public boolean changePassword(PasswordEntry passwordEntry, String password) {
-
+    public boolean changePassword(String password, String serviceName) {
         boolean isDuplicate = passwordEntries.stream()
                 .anyMatch(pe -> pe.getPassword().equals(password));
         if (!isDuplicate) {
-            passwordEntry.setPassword(password);
+            for (PasswordEntry passwordEntry : passwordEntries) {
+                if (passwordEntry.getServiceName().equalsIgnoreCase(serviceName)) {
+                    passwordEntry.setPassword(password);
+                    return true;
+                }
+            }
+        } else {
+            System.out.println("This password does exist, choose different one.");
         }
-        return isDuplicate;
+        return false;
+
     }
 
     public HashSet<PasswordEntry> getPasswordEntries() {
@@ -41,9 +54,18 @@ public class PasswordManager {
 
     //         Added lines in 23.08.2019
 
-    public void displayPassword(PasswordEntry passwordEntry) {
-        passwordEntry.getPassword();
-        System.out.println("Your password for: " + passwordEntry + " is: ");
-        System.out.println(password);
+    public boolean displayPassword(String serviceName) {
+
+        for (PasswordEntry passwordEntry : passwordEntries) {
+            if (passwordEntry.getServiceName().equalsIgnoreCase(serviceName)) {
+                System.out.println("Your password for: "
+                        + passwordEntry.getServiceName()
+                        + " is: "
+                        + passwordEntry.getPassword());
+                return true;
+            }
+        }
+        System.out.println("No such service found.");
+        return false;
     }
 }

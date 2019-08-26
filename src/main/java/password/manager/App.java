@@ -7,10 +7,10 @@ public class App {
 
     static String mainPassword = "1234qwer";
     static int numberOfTrials = 4;
+    static PasswordManager passwordManager = new PasswordManager();
 
     public static void main(String[] args) throws IOException {
 
-        PasswordManager passwordManager = new PasswordManager();
 
         passwordManager.addPassword("12345678", "dd1.com");
         passwordManager.addPassword("45486545", "dd2.com");
@@ -31,49 +31,81 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
 
-        for (int i = 0; i < numberOfTrials; i++) {
+        /*for (int i = 0; i < numberOfTrials; i++) {
             System.out.println("MENU 1 : Provide password to open the file");
             String fromKeyboard = sc.nextLine();
             if (fromKeyboard.equals(mainPassword)) {
-                passwordManager.openMenu2();
+                i = numberOfTrials;
+                openMenu2();
             }
-        }
+        }*/
+
+        openMenu2();
         System.out.println("Application closed");
 
 
-        public void openMenu2 () {
+    }
 
-            Scanner sc = new Scanner(System.in);
+    public static void openMenu2() {
 
-            System.out.println("MENU 2 : Choose option you want to do:  ");
-            System.out.println("\t\t1. - Display password for specified entry");
-            System.out.println("\t\t2. - Add new entry and set password.");
-            System.out.println("\t\t3. - Remove entry");
-            System.out.println("\t\t4. - Change password for existing entry");
-            System.out.println("\t\t5. - Safe and close");
+        Scanner sc = new Scanner(System.in);
 
-            String fromKeyboard = sc.nextLine();
+        System.out.println("MENU 2 : Choose option you want to do:  ");
+        System.out.println("\t\t1. - Display password for specified entry");
+        System.out.println("\t\t2. - Add new entry and set password.");
+        System.out.println("\t\t3. - Remove entry");
+        System.out.println("\t\t4. - Change password for existing entry");
+        System.out.println("\t\t5. - Safe and close");
+
+        int fromKeyboard = Integer.parseInt(sc.nextLine());
 
 
-            switch (fromKeyboard) {
-                case 1: {
-                    passwordManager.displayPassword();
-                }
-                case 2: {
-                    passwordManager.addPassword(String password);
-                }
+        switch (fromKeyboard) {
+            case 1: {
+                System.out.println("Put service name: ");
+                String serviceName = sc.nextLine();
+                System.out.println(serviceName);
+                passwordManager.displayPassword(serviceName);
+                break;
+            }
+            case 2: {
+                System.out.println("Put service name you want to add: ");
+                String serviceName = sc.nextLine();
+                System.out.println("Put password for :" + serviceName);
+                String password = sc.nextLine();
+                passwordManager.addPassword(password, serviceName);
+                break;
+            }
 
 //                Added lines in 26.08.2019
-                case 3: {
-                    passwordManager.removePassword(PasswordEntry passwordEntry, String password);
-                }
-                case 4. {
-                    passwordManager.changePassword(PasswordEntry passwordEntry, String password);
-                }
-                case 5. {
+            case 3: {
+                System.out.println("Put service name you want to remove: ");
+                String serviceName = sc.nextLine();
+                passwordManager.removePassword(serviceName);
+                break;
+            }
+            case 4: {
+                System.out.println("Put service name you want to add: ");
+                String serviceName = sc.nextLine();
+                System.out.println("Put password for :" + serviceName);
+                String password = sc.nextLine();
+                passwordManager.changePassword(password, serviceName);
+                break;
+            }
+            case 5: {
+                try {
                     passwordManager.savePasswords();
+                } catch (IOException e) {
+                    System.out.println("Error while saving file");
+                    e.printStackTrace();
                 }
-
+                System.exit(0);
+                break;
+            }
+            default:{
+                System.out.println("Choose correct option.");
+                openMenu2();
+                break;
             }
 
 

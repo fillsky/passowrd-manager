@@ -63,11 +63,6 @@ public class FileManager {
         String login = row[2];
         String description = row[3];
         return new PasswordEntry(password, serviceName, login, description);
-
-
     }
-
-
-
 
 }

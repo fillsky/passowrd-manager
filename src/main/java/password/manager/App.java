@@ -32,14 +32,14 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
 
-        /*for (int i = 0; i < numberOfTrials; i++) {
+        for (int i = 0; i < numberOfTrials; i++) {
             System.out.println("MENU 1 : Provide password to open the file");
             String fromKeyboard = sc.nextLine();
             if (fromKeyboard.equals(mainPassword)) {
                 i = numberOfTrials;
                 openMenu2();
             }
-        }*/
+        }
 
         openMenu2();
         passwordManager.savePasswords();
@@ -81,7 +81,7 @@ public class App {
                 case 2: {
                     System.out.println("Put service name you want to add: ");
                     String serviceName = sc.nextLine();
-                    System.out.println("Put password for : " + serviceName);
+                    System.out.println("Put password for: " + serviceName);
                     String password = sc.nextLine();
                     passwordManager.addPassword(password, serviceName);
                     break;
@@ -102,7 +102,7 @@ public class App {
                 case 4: {
                     System.out.println("Put service name you want to change: ");
                     String serviceName = sc.nextLine();
-                    System.out.println("Put password for :" + serviceName);
+                    System.out.println("Put password for: " + serviceName);
                     String password = sc.nextLine();
                     passwordManager.changePassword(password, serviceName);
                     break;
@@ -122,12 +122,6 @@ public class App {
                     break;
                 }
             }
-
-//    wyswietl, dodaj, skopiuj, aktualizuj,
-//    zablokuj save,
-//    plik ani przez chwilę nie powinien miec odszyfrowanego pliku
-
-
         }
     }
 }
